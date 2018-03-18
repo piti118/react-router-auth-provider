@@ -1,6 +1,6 @@
 {
   "name": "react-router-auth-provider",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple Authorization Context Provider for React Router with Automatic Redirection",
   "main": "lib/index.js",
   "scripts": {
