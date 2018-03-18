@@ -15,7 +15,7 @@ yarn add react-router-auth-provider
 ## Usage
 
 react-router-auth-provider consists of ``<AuthProvider/>``, ``<AuthRoute/>`` and HOC ``withAuth``.
-Easiest way to see how it works together is to head to [example](https://github.com/piti118/react-router-auth-provider-example)
+Easiest way to see how it works together is to head over to [example](https://github.com/piti118/react-router-auth-provider-example)
 
 ## API
 
