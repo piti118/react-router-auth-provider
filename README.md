@@ -49,7 +49,7 @@ it only require login but does not perform role check.
 A higher order component to provide grab the context from `AuthProvider`.
 withAuth provides authorization the following props from the AuthProvider.
 
-- `loggedIn: bool` boolean to check if user is logged in.
+- `isLoggedIn: bool` boolean indicating if user is logged in.
 - `authInfo: object` authorization info object. This could contains stuff like username, roles etc.
 - `onLoginSuccess: (authInfo: AuthInfo, cb?: () => any) => void` a function to call when loggin is successful 
 to trigger update of `loggedIn` and `authInfo` with optional callback.

@@ -21,7 +21,7 @@ type Props<WhoAmIResponse, AuthInfo> = {
 
 type State<T> = {
   ready: boolean,
-  loggedIn: boolean,
+  isLoggedIn: boolean,
   authInfo: ?T
 }
 
@@ -43,18 +43,18 @@ export class AuthProvider<WhoAmIResponse, AuthInfo>
     super(props)
     this.state = {
       ready: false,
-      loggedIn: false,
+      isLoggedIn: false,
       authInfo: null
     };
   }
 
   onLoginSuccess = (authInfo: AuthInfo, cb?: () => any) => {
-    this.setState({ authInfo, loggedIn: true }, cb)
+    this.setState({ authInfo, isLoggedIn: true }, cb)
   }
 
   onLogout = (cb?: (cb?: () => any) => any) => {
     this.props.logout().then(() => {
-        this.setState({ authInfo: null, loggedIn: false }, () => {
+        this.setState({ authInfo: null, isLoggedIn: false }, () => {
           if (cb) {
             cb(
               () => {
@@ -76,7 +76,7 @@ export class AuthProvider<WhoAmIResponse, AuthInfo>
 
   getChildContext = () => {
     return {
-      loggedIn: this.state.loggedIn,
+      isLoggedIn: this.state.isLoggedIn,
       authInfo: this.state.authInfo,
       onLoginSuccess: this.onLoginSuccess,
       onLogout: this.onLogout
@@ -85,7 +85,7 @@ export class AuthProvider<WhoAmIResponse, AuthInfo>
 
   static
   childContextTypes = {
-    loggedIn: PropTypes.bool,
+    isLoggedIn: PropTypes.bool,
     authInfo: PropTypes.object,
     onLoginSuccess: PropTypes.func,
     onLogout: PropTypes.func,
@@ -95,11 +95,11 @@ export class AuthProvider<WhoAmIResponse, AuthInfo>
     this.props.whoami()
       .then(({ data }) => {
         const authInfo = this.props.getAuthInfo(data)
-        this.setState({ authInfo: authInfo, loggedIn: true, ready: true })
+        this.setState({ authInfo: authInfo, isLoggedIn: true, ready: true })
       })
       .catch(err => {
         if (err.response.status === 401) {
-          this.setState({ authInfo: null, loggedIn: false, ready: true })
+          this.setState({ authInfo: null, isLoggedIn: false, ready: true })
         } else {
           console.error(err)
         }
