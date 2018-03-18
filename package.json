@@ -36,5 +36,12 @@
   "dependencies": {
     "prop-types": "^15.6.1",
     "recompose": "^0.26.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/piti118/react-router-auth-provider.git"
+  },
+  "files": [
+    "lib"
+  ]
 }
