@@ -55,13 +55,19 @@ export class AuthProvider<WhoAmIResponse, AuthInfo>
   onLogout = (cb?: (cb?: () => any) => any) => {
     this.props.logout().then(() => {
         this.setState({ authInfo: null, loggedIn: false }, () => {
-          if (cb) cb(
-            () => {
-              if (this.props.redirectOnLogout) {
-                this.props.history.push(this.props.redirectOnLogout)
+          if (cb) {
+            cb(
+              () => {
+                if (this.props.redirectOnLogout) {
+                  this.props.history.push(this.props.redirectOnLogout)
+                }
               }
+            )
+          } else {
+            if (this.props.redirectOnLogout) {
+              this.props.history.push(this.props.redirectOnLogout)
             }
-          )
+          }
         })
       }
     )
