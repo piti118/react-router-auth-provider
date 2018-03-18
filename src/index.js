@@ -126,22 +126,33 @@ type AuthRouteProps<AuthInfo> = {
   //own props
   path: string,
   component: ComponentType<any>,
+  permissionDeniedComponent: ComponentType<any>, //in case of login but roleCheckFail
   loginRoute: string,
   roleCheck: (AuthInfo) => bool,
+}
+
+function PermissionDenied(props){
+  return <div>Permission Denied</div>
 }
 
 class AuthRouteBase<AuthInfo> extends Component<AuthRouteProps<AuthInfo>> {
 
   static defaultProps = {
-    roleCheck: () => true
+    roleCheck: () => true,
+    permissionDeniedComponent: PermissionDenied
   }
 
   render() {
     const { isLoggedIn, loginRoute, path, authInfo, roleCheck } = this.props
     const Component = this.props.component
+    const PermissionDeniedComponent = this.props.permissionDeniedComponent
     return (<Route exact path={path} render={props => {
-      if (isLoggedIn && roleCheck(authInfo)) {
-        return <Component {...props} />
+      if (isLoggedIn) {
+        if(roleCheck(authInfo)) {
+          return <Component {...props} />
+        } else {
+          return <PermissionDeniedComponent {...props}/>
+        }
       } else {
         this.props.history.replace(loginRoute, { from: props.location })
         return null

@@ -44,6 +44,7 @@ redirect the user to `loginRoute`. The props are
 - `loginRoute` route to redirect to when user is not autorized.
 - `roleCheck: (AuthInfo) => bool` a function to check role. Default is `()=>true`. Which means
 it only require login but does not perform role check.
+- `permissionDeniedComponent` the component to show if user is logged in but fail on roleCheck.
 
 ### withAuth
 A higher order component to provide grab the context from `AuthProvider`.
