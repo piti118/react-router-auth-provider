@@ -119,7 +119,7 @@ export class AuthProvider<WhoAmIResponse, AuthInfo>
 
 type AuthRouteProps<AuthInfo> = {
   //from withAuth
-  loggedIn: bool,
+  isLoggedIn: bool,
   authInfo: AuthInfo,
   //from withRouter
   history: any,
@@ -137,10 +137,10 @@ class AuthRouteBase<AuthInfo> extends Component<AuthRouteProps<AuthInfo>> {
   }
 
   render() {
-    const { loggedIn, loginRoute, path, authInfo, roleCheck } = this.props
+    const { isLoggedIn, loginRoute, path, authInfo, roleCheck } = this.props
     const Component = this.props.component
     return (<Route exact path={path} render={props => {
-      if (loggedIn && roleCheck(authInfo)) {
+      if (isLoggedIn && roleCheck(authInfo)) {
         return <Component {...props} />
       } else {
         this.props.history.replace(loginRoute, { from: props.location })
