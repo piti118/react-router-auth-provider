@@ -1,5 +1,7 @@
 # react-router-auth-provider
 
+[![npm version](https://badge.fury.io/js/react-router-auth-provider.svg)](https://badge.fury.io/js/react-router-auth-provider)
+
 A simple authorization context provider
 for react-router with redirection.
 
