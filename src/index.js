@@ -98,7 +98,7 @@ export class AuthProvider<WhoAmIResponse, AuthInfo>
         this.setState({ authInfo: authInfo, isLoggedIn: true, ready: true })
       })
       .catch(err => {
-        if (err.response.status === 401) {
+        if (err.response && err.response.status === 401) {
           this.setState({ authInfo: null, isLoggedIn: false, ready: true })
         } else {
           console.error(err)
